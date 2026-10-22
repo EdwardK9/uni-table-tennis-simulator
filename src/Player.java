@@ -21,4 +21,9 @@ public class Player {
     public int getSkillRating() {
         return skillRating;
     }
+
+    // Winning a game earns one skill point.
+    public void addSkillPoint() {
+        skillRating++;
+    }
 }

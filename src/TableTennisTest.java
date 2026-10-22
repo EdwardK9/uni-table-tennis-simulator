@@ -11,7 +11,20 @@ public class TableTennisTest {
         testMatchEnd();
         testTournamentStructure();
         testByesAndElimination();
+        testSkillPoints();
         System.out.println("All tests passed.");
+    }
+
+    // Each game won adds one skill point, so skill rises by the total games played.
+    static void testSkillPoints() {
+        Player a = new Player("A");
+        Player b = new Player("B");
+        int skillBefore = a.getSkillRating() + b.getSkillRating();
+        Match match = new Match(a, b);
+        match.playMatch();
+        int gamesPlayed = match.getPlayer1Games() + match.getPlayer2Games();
+        int skillAfter = a.getSkillRating() + b.getSkillRating();
+        check(skillAfter - skillBefore == gamesPlayed, "skill should rise by one per game won");
     }
 
     // Game ends only at 11+ points with a lead of at least 2.

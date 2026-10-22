@@ -41,10 +41,13 @@ public class Match {
             }
         }
 
+        // The game winner gets a game and a skill point.
         if (player1Points > player2Points) {
             player1Games++;
+            player1.addSkillPoint();
         } else {
             player2Games++;
+            player2.addSkillPoint();
         }
     }
 

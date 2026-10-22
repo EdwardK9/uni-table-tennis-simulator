@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -11,13 +10,18 @@ public class Main {
         players.add(new Player("Morgan"));
         players.add(new Player("Taylor"));
 
-        // Put the players in a random order for the tournament draw.
-        Collections.shuffle(players);
+        // Run the tournament; it shuffles the draw itself.
+        Tournament tournament = new Tournament(players);
+        Player champion = tournament.playTournament();
 
-        // Show the shuffled draw order and each player's skill rating.
-        System.out.println("Tournament draw order:");
-        for (Player player : players) {
-            System.out.println(player.name + " (skill: " + player.skillRating + ")");
+        // Show each match result.
+        System.out.println("Tournament matches:");
+        for (Match match : tournament.getMatches()) {
+            System.out.println(match.getPlayer1().getName() + " vs " + match.getPlayer2().getName()
+                    + " - winner: " + match.getWinner().getName()
+                    + " (" + match.getPlayer1Games() + " - " + match.getPlayer2Games() + ")");
         }
+
+        System.out.println("Champion: " + champion.getName());
     }
 }

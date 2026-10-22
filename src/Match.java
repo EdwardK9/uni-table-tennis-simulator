@@ -33,8 +33,13 @@ public class Match {
         int player1Points = 0;
         int player2Points = 0;
 
+        // Skill 0 still gets a chance, so add 1 to each player's weight.
+        int player1Weight = player1.getSkillRating() + 1;
+        int player2Weight = player2.getSkillRating() + 1;
+
+        // Each point goes to player 1 with chance player1Weight / total weight.
         while (!isGameOver(player1Points, player2Points)) {
-            if (random.nextBoolean()) {
+            if (random.nextInt(player1Weight + player2Weight) < player1Weight) {
                 player1Points++;
             } else {
                 player2Points++;

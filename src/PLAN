@@ -1,0 +1,37 @@
+Aim
+Build a table tennis simulator that declares the winner each time the program runs.
+
+- A match is played between two players.
+- A game is won by the first player to reach 11 points, with a lead of at least 2 points.
+  (If the score reaches 10-10, play continues until one player leads by 2.)
+- For this basic simulator, a match is the best of 3 games. The first player to win 2 games wins the match.
+- Point outcomes are simulated randomly. This keeps the program simple; player skill ratings can be added later to make stronger players more likely to win.
+- In a real tournament, players compete under the same rules and a match result determines who advances.
+- Adjustable player count too?
+
+A tournament is a series of matches used to find an overall winner.
+This simulator uses a single-elimination knockout format: players are paired for each round, match winners advance, and players who lose are eliminated.
+The last player remaining is the tournament champion. If a round has an odd number of players, one player receives a bye and advances without playing.
+
+Main parts of the program
+- Player: stores a player's name and a skill rating.
+    (Skill rating will start all on 0 - 5 randomly, then if a player wins a game then they ge another skill point)
+- Match: simulates games between two players and records the winner and score.
+- Tournament: creates the rounds, pairs players, advances winners, and records the champion.
+- Main: creates the players, starts the tournament, and displays the results.
+
+Plan:
+1. Create a list of players with names and random skill level (0-5).
+2. Shuffle the players so the initial draw is fair and different each run.
+3. Pair players in each round and simulate each match point by point.
+4. Advance each match winner to the next round; give an unpaired player a bye.
+5. Repeat until one player remains.
+6. Display each match result and declare the tournament champion.
+
+Testing
+- Check that a game ends only when a player has at least 11 points and leads
+  by 2.
+- Check that a match ends when a player has won 2 games.
+- Check that winners advance, losers are eliminated, and byes are handled.
+- Check that the tournament finishes with exactly one champion and displays
+  that winner on every run.

@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Tournament {
     private List<Player> remainingPlayers;
-    private List<Match> matches = new ArrayList<>();
+    // Each round is a list of its matches, in play order.
+    private List<List<Match>> rounds = new ArrayList<>();
 
     public Tournament(List<Player> players) {
         remainingPlayers = new ArrayList<>(players);
@@ -16,12 +17,14 @@ public class Tournament {
     public Player playTournament() {
         while (remainingPlayers.size() > 1) {
             List<Player> nextRound = new ArrayList<>();
+            List<Match> roundMatches = new ArrayList<>();
+            rounds.add(roundMatches);
 
             // Pair players in order; each match winner advances.
             for (int i = 0; i + 1 < remainingPlayers.size(); i += 2) {
                 Match match = new Match(remainingPlayers.get(i), remainingPlayers.get(i + 1));
                 match.playMatch();
-                matches.add(match);
+                roundMatches.add(match);
                 nextRound.add(match.getWinner());
             }
 
@@ -35,7 +38,8 @@ public class Tournament {
         return remainingPlayers.get(0);
     }
 
-    public List<Match> getMatches() {
-        return matches;
+    // Matches grouped by round, first round at index 0.
+    public List<List<Match>> getRounds() {
+        return rounds;
     }
 }

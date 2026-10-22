@@ -49,7 +49,8 @@ public class Match {
     }
 
     // A game ends when someone has 11+ points and leads by at least 2.
-    private boolean isGameOver(int points1, int points2) {
+    // Package-private so the tests can check it directly.
+    static boolean isGameOver(int points1, int points2) {
         return Math.max(points1, points2) >= 11 && Math.abs(points1 - points2) >= 2;
     }
 

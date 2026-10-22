@@ -24,12 +24,16 @@ public class Main {
         Tournament tournament = new Tournament(players);
         Player champion = tournament.playTournament();
 
-        // Show each match result.
+        // Show each round, then each match in it.
         System.out.println("\nTournament matches:");
-        for (Match match : tournament.getMatches()) {
-            System.out.println(match.getPlayer1().getName() + " vs " + match.getPlayer2().getName()
-                    + " - winner: " + match.getWinner().getName()
-                    + " (" + match.getPlayer1Games() + " - " + match.getPlayer2Games() + ")");
+        List<List<Match>> rounds = tournament.getRounds();
+        for (int round = 0; round < rounds.size(); round++) {
+            System.out.println("\nRound " + (round + 1) + ":");
+            for (Match match : rounds.get(round)) {
+                System.out.println(match.getPlayer1().getName() + " vs " + match.getPlayer2().getName()
+                        + " - winner: " + match.getWinner().getName()
+                        + " (" + match.getPlayer1Games() + " - " + match.getPlayer2Games() + ")");
+            }
         }
 
         System.out.println("Champion: " + champion.getName());
